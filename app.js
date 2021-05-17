@@ -13,14 +13,13 @@ app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/note', require ('./routes/note.routes'))
 
-/*
-if (process.ENV.NODE_ENV === 'production') {
+
 app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 })
-}
-*/
+
+
 
 
 
@@ -31,7 +30,7 @@ await mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useCreateIndex: true
 })
-app.listen(PORT, ()=> console.log(`server started on port ${PORT}`))
+app.listen(PORT || 5000, ()=> console.log(`server started on port ${PORT}`))
 
  }
 catch (error){
